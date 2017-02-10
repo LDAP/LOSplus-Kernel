@@ -31,6 +31,7 @@
 #include <linux/gpio.h>
 #include <linux/interrupt.h>
 #include <mach/mmi_panel_notifier.h>
+#include <linux/display_state.h>
 
 #include "mdss_dsi.h"
 #include "mdss_fb.h"
@@ -70,8 +71,14 @@
 
 #define PWR_MODE_DISON 0x4
 
-DEFINE_LED_TRIGGER(bl_led_trigger);
+bool display_on = true;
 
+bool is_display_on()
+{
+	return display_on;
+}
+
+DEFINE_LED_TRIGGER(bl_led_trigger);
 
 static DECLARE_COMPLETION(bl_on_delay_completion);
 static enum hrtimer_restart mdss_dsi_panel_bl_on_defer_timer_expire(
@@ -801,6 +808,9 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	state_resume();
 #endif
 
+	display_on = true;
+
+
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 	mipi  = &pdata->panel_info.mipi;
@@ -961,6 +971,8 @@ disable_regs:
 #endif
 
 	pr_info("%s-:\n", __func__);
+
+	display_on = false;
 
 	return 0;
 }
