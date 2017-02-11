@@ -147,10 +147,10 @@ if [[ "$begin" == "y" || "$begin" == "Y" ]]; then
       cp -i $BOOT/$zimg $anykernel
 
       # Checks and renames
-      if [[ "$zimg" == "zImage-dtb" ]]; then
-      echo -e "\nRenaming..."
-      mv $anykernel/$zimg $anykernel/zImage
-      fi
+      #if [[ "$zimg" == "zImage-dtb" ]]; then
+      #echo -e "\nRenaming..."
+      #mv $anykernel/$zimg $anykernel/zImage
+      #fi
 
       # Creates the zip archive
       echo -e "\nCreating flashable zip archive..."
