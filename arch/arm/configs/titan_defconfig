@@ -1,3 +1,11 @@
+######
+#
+# CM+ Modifications
+#
+CONFIG_LOCALVERSION="CM+Kernel-R8"
+
+######
+
 # CONFIG_ARM_PATCH_PHYS_VIRT is not set
 CONFIG_BOOTINFO=y
 CONFIG_EXPERIMENTAL=y
